@@ -134,7 +134,7 @@ A separate localhost smoke check also passed against a real Uvicorn process: sta
 
 `examples/demo_report.json` and `examples/benchmark_sample.json` preserve one verified run. The benchmark submits 500 events through 8 worker threads directly to the storage service. It verifies event totals and expected flags and reports local latency/throughput. It **excludes HTTP, network, server scheduling and real traffic**. It does not establish high-concurrency production capacity, a service-level objective or moderation accuracy. Re-run it on your own machine; performance varies.
 
-The GitHub Actions workflow is configured to run tests and the demo on Python 3.11–3.13. Only the local Python 3.12 run has been verified here; remote CI results will be available after publishing.
+The GitHub Actions workflow runs tests and the demo on Python 3.11–3.13. Its latest run passed after the complete source was uploaded; the local Python 3.12 checks and HTTP smoke check are described above.
 
 ## Limitations and responsible use
 
@@ -148,16 +148,7 @@ The GitHub Actions workflow is configured to run tests and the demo on Python 3.
 
 Possible next steps: evaluate precision/recall on a labelled synthetic dataset; add reviewer roles and leases; introduce retention; benchmark the HTTP API; then consider PostgreSQL plus partitioned event processing if observed load justifies it. A future distributed design must preserve room/user ordering and retry semantics rather than merely adding workers.
 
-## Publish on GitHub
-
-1. Extract the project ZIP and open this folder. Run the tests and demo first.
-2. Create an empty repository named `livestream-safety-lab` in your account.
-3. Upload this folder's **contents**, including `.github/workflows/tests.yml` and `.gitignore` (hidden folders may need to be enabled). Do not upload `.venv`, `build`, `data`, secrets, or your résumé.
-4. Check the Actions tab after publishing. Add the repository link to your résumé only once it exists.
-
-Suggested description: **Python trust-and-safety prototype with configurable chat rules, a prioritised human-review queue, SQLite audit history and concurrency tests.**
-
-See [Interview guide](docs/INTERVIEW_GUIDE.md) for a code walkthrough and exercises. No licence is included: choose one yourself before granting reuse permissions.
+See [Interview guide](docs/INTERVIEW_GUIDE.md) for a code walkthrough and exercises. No project-wide reuse licence is included; third-party dependencies retain their own notices.
 
 ## Technical references
 
