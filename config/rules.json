@@ -1,0 +1,9 @@
+{
+  "version": "demo-1.0",
+  "window_seconds": 60,
+  "max_messages_per_window": 5,
+  "repetition_threshold": 3,
+  "blocked_domains": ["rewards.example"],
+  "review_phrases": ["you are worthless", "nobody wants you here"],
+  "priorities": {"suspicious_link": 90, "harassment_phrase": 80, "repeated_message": 60, "burst_activity": 40}
+}
