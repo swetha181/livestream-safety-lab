@@ -1,0 +1,25 @@
+{
+  "scope": "local SQLite service-layer ingestion; excludes HTTP/network and server scheduling",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "python": "3.12.14",
+  "events": 500,
+  "workers": 8,
+  "errors": 0,
+  "elapsed_seconds": 0.1528,
+  "events_per_second": 3272.02,
+  "p50_ms": 0.222,
+  "p95_ms": 1.826,
+  "metrics": {
+    "total_events": 500,
+    "flagged_events": 50,
+    "pending_reviews": 50,
+    "completed_reviews": 0,
+    "human_allowed": 0,
+    "human_removed": 0,
+    "average_time_to_decision_seconds": null,
+    "signals_by_rule": {
+      "suspicious_link": 50
+    }
+  },
+  "caveat": "One local sample. SQLite serializes writes. This does not establish high-concurrency production capacity."
+}
