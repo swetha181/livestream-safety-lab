@@ -1,0 +1,187 @@
+{
+  "dataset": "synthetic",
+  "transport": "FastAPI TestClient (in-process)",
+  "outcomes": [
+    {
+      "event_id": "normal",
+      "route": "allow",
+      "priority": 0,
+      "signals": []
+    },
+    {
+      "event_id": "link",
+      "route": "review",
+      "priority": 90,
+      "signals": [
+        {
+          "rule_id": "suspicious_link",
+          "reason": "Link points to a domain in the demo watchlist",
+          "priority": 90
+        }
+      ]
+    },
+    {
+      "event_id": "phrase",
+      "route": "review",
+      "priority": 80,
+      "signals": [
+        {
+          "rule_id": "harassment_phrase",
+          "reason": "A configured phrase requires a contextual human review",
+          "priority": 80
+        }
+      ]
+    },
+    {
+      "event_id": "repeat1",
+      "route": "allow",
+      "priority": 0,
+      "signals": []
+    },
+    {
+      "event_id": "repeat2",
+      "route": "allow",
+      "priority": 0,
+      "signals": []
+    },
+    {
+      "event_id": "repeat3",
+      "route": "review",
+      "priority": 60,
+      "signals": [
+        {
+          "rule_id": "repeated_message",
+          "reason": "Repeated normalised message in this user's room-specific time window",
+          "priority": 60
+        }
+      ]
+    },
+    {
+      "event_id": "burst1",
+      "route": "allow",
+      "priority": 0,
+      "signals": []
+    },
+    {
+      "event_id": "burst2",
+      "route": "allow",
+      "priority": 0,
+      "signals": []
+    },
+    {
+      "event_id": "burst3",
+      "route": "allow",
+      "priority": 0,
+      "signals": []
+    },
+    {
+      "event_id": "burst4",
+      "route": "allow",
+      "priority": 0,
+      "signals": []
+    },
+    {
+      "event_id": "burst5",
+      "route": "allow",
+      "priority": 0,
+      "signals": []
+    },
+    {
+      "event_id": "burst6",
+      "route": "review",
+      "priority": 40,
+      "signals": [
+        {
+          "rule_id": "burst_activity",
+          "reason": "User exceeded the demo message threshold in this room",
+          "priority": 40
+        }
+      ]
+    },
+    {
+      "event_id": "context",
+      "route": "review",
+      "priority": 80,
+      "signals": [
+        {
+          "rule_id": "harassment_phrase",
+          "reason": "A configured phrase requires a contextual human review",
+          "priority": 80
+        }
+      ]
+    }
+  ],
+  "queue_before_review": [
+    "link",
+    "phrase",
+    "context",
+    "repeat3",
+    "burst6"
+  ],
+  "metrics_before": {
+    "total_events": 13,
+    "flagged_events": 5,
+    "pending_reviews": 5,
+    "completed_reviews": 0,
+    "human_allowed": 0,
+    "human_removed": 0,
+    "average_time_to_decision_seconds": null,
+    "signals_by_rule": {
+      "burst_activity": 1,
+      "harassment_phrase": 2,
+      "repeated_message": 1,
+      "suspicious_link": 1
+    }
+  },
+  "metrics_after": {
+    "total_events": 13,
+    "flagged_events": 5,
+    "pending_reviews": 3,
+    "completed_reviews": 2,
+    "human_allowed": 1,
+    "human_removed": 1,
+    "average_time_to_decision_seconds": 25.5,
+    "signals_by_rule": {
+      "burst_activity": 1,
+      "harassment_phrase": 2,
+      "repeated_message": 1,
+      "suspicious_link": 1
+    }
+  },
+  "context_audit": [
+    {
+      "id": 13,
+      "event_id": "context",
+      "action": "classified",
+      "actor": "rule_engine",
+      "at": 1789516813.0,
+      "detail": {
+        "route": "review",
+        "priority": 80,
+        "signals": [
+          {
+            "rule_id": "harassment_phrase",
+            "reason": "A configured phrase requires a contextual human review",
+            "priority": 80
+          }
+        ],
+        "rule_version": "demo-1.0:e11ade2504",
+        "features": {
+          "messages_in_window": 1,
+          "repeats_in_window": 1
+        }
+      }
+    },
+    {
+      "id": 14,
+      "event_id": "context",
+      "action": "human_review",
+      "actor": "demo-reviewer",
+      "at": 1789516833.0,
+      "detail": {
+        "decision": "allow",
+        "note": "Educational quotation; contextual review clears the flag"
+      }
+    }
+  ]
+}
